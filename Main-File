@@ -1,0 +1,126 @@
+
+
+####################################################  VOICE COMMAND SHELL ########################################
+
+
+import os
+
+def voice2():
+ import speech_recognition as s
+ sr=s.Recognizer()
+ print("\t\t\t\t\t\t\ti'm listening you")
+ with s.Microphone() as m:
+  audio=sr.listen(m,timeout=5, phrase_time_limit=5)
+  query=sr.recognize_google(audio,language='eng-in')
+  print("\t\t\t\t\t\t\t",query)
+  return query
+
+
+
+def voice():
+ import speech_recognition as s
+ sr=s.Recognizer()
+ print("\t\t\t\t\t\t\ti am your script and listening you...........................")
+ with s.Microphone() as m:
+  audio=sr.listen(m,timeout=5, phrase_time_limit=5)
+  query=sr.recognize_google(audio,language='eng-in')
+  print("\t\t\t\t\t\t\t",query)  
+  return query
+      
+      
+
+
+def source():
+ while(1):
+	q=voice()
+	sm,cmd=0,str(q)
+	#################################### greetings ###############################################
+	if cmd == "open Google":
+    	os.system("firefox www.google.com &")
+	#################################### settings ###############################################
+	elif cmd == "open settings" or cmd == "open setting":
+    	os.system("gnome-terminal --command=gnome-control-center wifi")
+	#################################### create/delete folder ###############################################
+	elif cmd == "create folder":
+    	name=voice2()
+    	os.system("mkdir " + name)
+	elif cmd == "delete folder":
+    	name=voice2()
+    	os.system("rmdir " + name)
+	#################################### create/delete files ################################################
+	elif cmd == "create file":
+    	name=voice2()
+    	ext=voice2()
+    	if(ext == "CBP" or ext == "CPP"):
+        	os.system("touch " + name + "." + "cpp")
+    	if(ext == "eBay" or ext == "BBY"):
+        	os.system("touch " + name + "." + "py")
+    	if(ext == "DxD" or ext == "e x t" or ext == "txt"):
+        	os.system("touch " + name + "." + "txt")
+	elif cmd == "delete file":
+    	name=voice2()
+    	ext=voice2()
+    	if(ext == "CBP" or ext == "CPP"):
+        	os.system("rm " + name + "." + "cpp")
+    	if(ext == "eBay" or ext == "BBY"):
+        	os.system("rm " + name + "." + "py")
+    	if(ext == "DxD" or ext == "e x t" or ext == "txt"):
+        	os.system("rm " + name + "." + "txt")
+	#################################### delete all files from a  directory###############################################
+	elif cmd == "remove directory files":
+    	name=voice2()
+    	os.system("rm -r " + name + "/*")
+	#################################### change directory ###############################################   
+	elif cmd == "change directory":
+    	name=voice2()
+    	os.system("cd " + name + "&&" + "mkdir hamiz")
+	#################################### zip folder ###############################################
+	elif cmd == "compressed folder":
+    	name=voice2()
+    	os.system("tar -czvf archive.tar.gz " + name + "/")
+  		 #################################### rename files ###############################################   
+	elif cmd == "rename file":
+    	name1=voice2()
+    	ext1=voice2()
+    	name2=voice2()
+    	if(ext1 == "CBP" or ext1 == "CPP"):
+        	os.system("mv " + name1 + "." + "cpp" + " " + name2 + "." + "cpp")
+    	if(ext1 == "eBay" or ext1 == "BBY" or ext1 == "py"):
+        	os.system("mv " + name1 + "." + "py" + " " + name2 + "." + "py")
+    	if(ext1 == "DxD" or ext1 == "e x t" or ext1 == "txt"):
+        	os.system("mv " + name1 + "." + "txt" + " " + name2 + "." + "txt")
+  		 #################################### copy files ###############################################
+	elif cmd == "copy to file":
+    	name1=voice2()
+    	ext1=voice2()
+    	name2=voice2()
+    	if(ext1 == "CBP" or ext1 == "CPP"):
+        	os.system("cp " + name1 + "." + "cpp" + " " + name2 + ".cpp" )
+    	if(ext1 == "eBay" or ext1 == "BBY" or ext1 == "py"):
+        	os.system("cp " + name1 + "." + "py" + " " + name2 + ".py")
+    	if(ext1 == "DxD" or ext1 == "e x t" or ext1 == "txt"):
+        	os.system("cp " + name1 + "." + "txt" + " " + name2 + ".txt")
+   		 #################################### copy files to folder ###############################################
+	elif cmd == "copy to folder":
+    	name1=voice2()
+    	ext1=voice2()
+    	name2=voice2()
+    	if(ext1 == "CBP" or ext1 == "CPP"):
+        	os.system("cp " + name1 + "." + "cpp" + " " + name2)
+    	if(ext1 == "eBay" or ext1 == "BBY" or ext1 == "py"):
+        	os.system("cp " + name1 + "." + "py" + " " + name2)
+    	if(ext1 == "DxD" or ext1 == "e x t" or ext1 == "txt"):
+        	os.system("cp " + name1 + "." + "txt" + " " + name2)   
+  		 ###################################### path ###########################################################
+	elif cmd =="current directory":
+    	os.system("pwd")
+  		 ##################################### listing ########################################################    
+	elif cmd =="listing":
+    	os.system("ls")
+	else:
+    	sm = 1
+	print("\t\t\t\t\t\t\t",cmd if sm == 0 else "No command found")
+
+
+########################################main######################################
+source()
