@@ -1,0 +1,11 @@
+#This is a project of Voice Command Shell for our Course Operating System(OS)  
+#Certain COmmands are given to the mic then it is converted into text from speech using python API.
+#Then It matches the condition and execute Task
+
+#################################################### Install virtual environment for ubuntu ######################
+
+Sudo apt install venv
+Python3 -m venv .venv
+Source .venv/bin/activate
+
+Pip install packag_name
